@@ -88,7 +88,7 @@
             <!-- Password input -->
             <div class="form-floating mb-3">
               <input type="text" class="form-control @error('password') is-invalid @enderror" id="floatingInput" placeholder="example" name="password">
-              <label for="floatingInput">Password</label>
+              <label for="floatingInput">Password (NIS/NIP)</label>
               @error('password')
                   <div class="invalid-feedback text-start">{{ $message }}</div>
               @enderror

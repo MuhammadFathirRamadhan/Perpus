@@ -37,7 +37,7 @@
             <!-- Password input -->
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingInput" placeholder="example" name="password">
-              <label for="floatingInput">Password</label>
+              <label for="floatingInput">Password (NIS/NIP)</label>
             </div>
 
             <!-- Submit button -->
