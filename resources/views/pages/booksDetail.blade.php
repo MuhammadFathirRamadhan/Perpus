@@ -79,6 +79,49 @@
                 @else
                 <a href="/login" class="btn btn-info" >Pinjam Buku</a>
                 @endauth
+                {{-- Komentar --}}
+              <div class="card mt-4">
+               <div class="card-header py-3">
+               <h6 class="m-0 fw-bold">Komentar</h6>
+              </div>
+              <div class="card-body">
+              @foreach($book->comments as $comment)
+              <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+               <div>
+                 <div class="d-flex justify-content-between align-items-center mb-2">
+                  <strong>{{ $comment->user->name }}</strong>
+                   <small class="text-muted ms-2">{{ $comment->created_at->diffForHumans() }}</small>
+                  </div>
+                <p class="mb-1">{{ $comment->content }}</p>
+                 </div>
+                @if(auth()->check() && $comment->user_id === auth()->id())
+               <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="ms-3">
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus komentar ini?')">Hapus</button>
+               </form>
+              @endif
+              </div>
+             @endforeach
+
+              {{-- Form Tambah Komentar --}}
+               <div class="mt-4">
+                @auth
+                <form action="{{ route('comments.store') }}" method="POST">
+                 @csrf
+                 <input type="hidden" name="book_id" value="{{ $book->id }}">
+                    <div class="mb-3">
+                     <label for="content" class="form-label">Tambahkan Komentar</label>
+                      <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+                    </div>
+                       <button type="submit" class="btn btn-primary">Kirim Komentar</button>
+                    </form>
+                   @else
+                     <p>Silakan <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
+                   @endauth
+                 </div>
+               </div>
+              </div>
               </div>
           </div>
       </div>
