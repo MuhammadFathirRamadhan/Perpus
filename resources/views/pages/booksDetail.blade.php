@@ -83,6 +83,33 @@
           </div>
       </div>
 
+      <div class="mb-3">
+        <h4>Tulis Ulasan</h4>
+        <form action="{{ route('reviews.store') }}" method="POST">
+            @csrf
+            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            <div class="mb-3">
+                <label for="review" class="form-label">Ulasan Anda</label>
+                <textarea class="form-control" id="review" name="review" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
+        </form>
+    </div>
+
+    <div class="mt-5">
+      <h4>Ulasan Pengguna</h4>
+      @if($book->reviews->count() > 0)
+          @foreach($book->reviews as $review)
+              <div class="card mb-2">
+                  <div class="card-body">
+                      <p>{{ $review->review }}</p>
+                      <small>Ditulis oleh: {{ $review->user->username }} pada {{ $review->created_at->format('d M Y') }}</small>
+                  </div>
+              </div>
+          @endforeach
+      @else
+          <p>Belum ada ulasan untuk buku ini.</p>
+      @endif
   </div>
   
 </div>

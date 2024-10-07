@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminBooksController;
 use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,12 @@ Route::post('/', [HomeController::class, 'category']);
 Route::resource('/books', BookController::class);
 Route::resource('/booking', BookingController::class)->middleware('auth');
 Route::get('/books', [BookController::class, 'index']);
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
 // admin and librarian
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('adminandlibrarian');
 Route::resource('/admin/booking', AdminBookingController::class)->middleware('adminandlibrarian');
-
 Route::middleware('adminandlibrarian')->group(function () {
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('users.index');
     Route::post('/admin/users', [AdminUserController::class, 'store'])->name('users.store');
