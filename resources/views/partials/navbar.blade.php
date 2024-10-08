@@ -6,6 +6,20 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
+
+        @can('librarian')
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('admin') ? 'active' : '' }}" href="/admin">Librarian</a>
+        </li>
+        @endcan
+  
+        @can('admin')
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('admin') ? 'active' : '' }}" href="/admin">Admin</a>
+        </li>
+        @endcan
+  
+
         <li class="nav-item">
           <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">Beranda</a>
         </li>
@@ -13,12 +27,6 @@
         <li class="nav-item">
           <a class="nav-link {{ Request::is('books*') ? 'active' : '' }}" href="/books">Koleksi</a>
         </li>
-        
-@can('admin')
-<li class="nav-item">
-  <a class="nav-link {{ Request::is('admin') ? 'active' : '' }}" href="/admin">Back</a>
-</li>
-@endcan
 
         @auth
         <li class="nav-item">

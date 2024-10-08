@@ -42,6 +42,12 @@
       <span>Users</span></a>
     </li>
   @endcan
+  
+  <li class="nav-item {{ Request::is('admin/back') ? 'active' : '' }}">
+    <a class="nav-link" href="/">
+      <i class="bi bi-arrow-left-circle-fill"></i>
+        <span>Back</span></a>
+</li>
     
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

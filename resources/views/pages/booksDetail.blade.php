@@ -82,7 +82,7 @@
                 {{-- Komentar --}}
               <div class="card mt-4">
                <div class="card-header py-3">
-               <h6 class="m-0 fw-bold">Komentar</h6>
+               <h6 class="m-0 fw-bold">Ulasan</h6>
               </div>
               <div class="card-body">
               @foreach($book->comments as $comment)
@@ -111,13 +111,13 @@
                  @csrf
                  <input type="hidden" name="book_id" value="{{ $book->id }}">
                     <div class="mb-3">
-                     <label for="content" class="form-label">Tambahkan Komentar</label>
+                     <label for="content" class="form-label">Tambahkan ulasan</label>
                       <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
                     </div>
-                       <button type="submit" class="btn btn-primary">Kirim Komentar</button>
+                       <button type="submit" class="btn btn-primary">ulasan</button>
                     </form>
                    @else
-                     <p>Silakan <a href="{{ route('login') }}">login</a> untuk menambahkan komentar.</p>
+                     <p>Silakan <a href="{{ route('login') }}">login</a> untuk menambahkan ulasan.</p>
                    @endauth
                  </div>
                </div>
@@ -125,36 +125,6 @@
               </div>
           </div>
       </div>
-
-      <div class="mb-3">
-        <h4>Tulis Ulasan</h4>
-        <form action="{{ route('reviews.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="book_id" value="{{ $book->id }}">
-            <div class="mb-3">
-                <label for="review" class="form-label">Ulasan Anda</label>
-                <textarea class="form-control" id="review" name="review" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
-        </form>
-    </div>
-
-    <div class="mt-5">
-      <h4>Ulasan Pengguna</h4>
-      @if($book->reviews->count() > 0)
-          @foreach($book->reviews as $review)
-              <div class="card mb-2">
-                  <div class="card-body">
-                      <p>{{ $review->review }}</p>
-                      <small>Ditulis oleh: {{ $review->user->username }} pada {{ $review->created_at->format('d M Y') }}</small>
-                  </div>
-              </div>
-          @endforeach
-      @else
-          <p>Belum ada ulasan untuk buku ini.</p>
-      @endif
-  </div>
-  
 </div>
 @endsection
 
