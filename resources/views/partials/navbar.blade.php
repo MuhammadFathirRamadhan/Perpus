@@ -13,6 +13,13 @@
         <li class="nav-item">
           <a class="nav-link {{ Request::is('books*') ? 'active' : '' }}" href="/books">Koleksi</a>
         </li>
+        
+@can('admin')
+<li class="nav-item">
+  <a class="nav-link {{ Request::is('admin') ? 'active' : '' }}" href="/admin">Back</a>
+</li>
+@endcan
+
         @auth
         <li class="nav-item">
           <a class="nav-link {{ Request::is('booking*') ? 'active' : '' }}" href="/booking">Peminjaman</a>

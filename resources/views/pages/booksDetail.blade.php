@@ -142,7 +142,7 @@
               <input type="text" name="user_id" value="{{ auth()->user()->id }}" hidden>
               <input type="text" name="status" value="{{ 'Diajukan' }}" hidden>
               <input type="text" name="is_denda" value="{{ 0 }}" hidden>
-              <button type="submit" class="btn btn-warning">Setuju Pinjam</button>
+              <button type="submit" class="btn btn-info">Setuju Pinjam</button>
           @else
               <div class="alert alert-danger">
                   Anda harus <a href="{{ route('login') }}">login</a> terlebih dahulu untuk meminjam buku.
